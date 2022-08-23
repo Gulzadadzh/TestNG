@@ -17,7 +17,7 @@ public static WebDriver driver;
 	public void openBrowser() {
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/drivers/chromedriver");
 		driver = new ChromeDriver();
-		driver.get("http://hrm.syntaxtechs.net/humanresources/symfony/web/index.php/auth/login");
+		driver.get("http://hrm.syntaxtechs.net/humanresources/symfony/web/index.php/dashboard");
 		// driver.manage().window().maximize();
 	}
 

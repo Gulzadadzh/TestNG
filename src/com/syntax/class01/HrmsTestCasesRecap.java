@@ -1,4 +1,4 @@
-package com.syntax.class02;
+package com.syntax.class01;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,39 +8,50 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class Dependency {
-	
+public class HrmsTestCasesRecap {
+
+	private static final int priority = 0;
 	public static WebDriver driver;
 
-	@BeforeMethod //(alwaysRun = true)
+	@BeforeMethod
 	public void openBrowser() {
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/drivers/chromedriver");
 		driver = new ChromeDriver();
-		driver.get("http://hrm.syntaxtechs.net/humanresources/symfony/web/index.php/auth/login");
-		// driver.manage().window().maximize();
+		driver.get("http://hrm.syntaxtechs.net/humanresources/symfony/web/index.php/dashboard");
+		driver.manage().window().maximize();
+
 	}
 
-	@AfterMethod //(alwaysRun = true)
-	public void closeBrowser() {
-		driver.quit();
-	}
-
-	@Test   //(groups="smoke")
+	@Test(priority = 2)
+	// alphabetical order
 	public void validLogin() {
 		driver.findElement(By.id("txtUsername")).sendKeys("Admin");
 		driver.findElement(By.id("txtPassword")).sendKeys("Hum@nhrm123");
 		driver.findElement(By.cssSelector("input#btnLogin")).click();
 		String welcomeText = driver.findElement(By.id("welcome")).getText();
+
 		if (welcomeText.contains("Admin")) {
-			System.out.println("Admin is logged in. Test pass");
+			System.out.println("Admin is logged in. Test Pass");
 		} else {
-			System.out.println("Admin is NOT logged in. Test fail");
+			System.out.println("Admin is NOT logged in. Test Fail");
+
 		}
 	}
 
-	@Test //(groups="regression") // if validLogin pass ONLY then execute invalidLogin
-	// otherwise if validLogin fails then DO NOT EXECUTE invalidLogin (invalid Login
-	// test will be skipped)
+	@Test(priority = 1)
+	public void titleValidation() {
+		String expectedTitle = "Human Management System";
+		String actualTitle = driver.getTitle();
+
+		if (actualTitle.equals(actualTitle)) {
+			System.out.println("Titles are matched.Test Pass");
+		} else {
+			System.out.println("Titles are matched.Test Failed");
+
+		}
+	}
+
+	@Test(priority = 3, enabled=false)
 	public void invalidLogin() {
 		driver.findElement(By.id("txtUsername")).sendKeys("Admin");
 		driver.findElement(By.cssSelector("input#btnLogin")).click();
@@ -52,6 +63,11 @@ public class Dependency {
 		} else {
 			System.out.println("Test FAIL");
 		}
+	}
+
+	@AfterMethod
+	public void closeBrowser() {
+		driver.quit();
 	}
 
 }

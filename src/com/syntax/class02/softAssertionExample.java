@@ -13,7 +13,7 @@ public class softAssertionExample {
 	
 	public static WebDriver driver;
 
-	@BeforeMethod(alwaysRun = true)
+	@BeforeMethod  //(alwaysRun = true)
 	public void openBrowser() {
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/drivers/chromedriver");
 		driver = new ChromeDriver();
@@ -21,7 +21,7 @@ public class softAssertionExample {
 		// driver.manage().window().maximize();
 	}
 
-	@AfterMethod(alwaysRun = true)
+	@AfterMethod  //(alwaysRun = true)
 	public void closeBrowser() {
 		driver.quit();
 	}
@@ -32,6 +32,7 @@ public class softAssertionExample {
 		driver.findElement(By.id("txtPassword")).sendKeys("guyguyguyg");
 		driver.findElement(By.cssSelector("input#btnLogin")).click();
 
+		
 		SoftAssert softAssertion = new SoftAssert();
 		String expectedErrorMessage1 = "Invalid credential";
 		WebElement errorMessage = driver.findElement(By.id("spanMessage"));

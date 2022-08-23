@@ -46,7 +46,7 @@ public class task {
 		softAssert.assertTrue(photograph.isDisplayed());
 		driver.findElement(By.id("firstName")).sendKeys("John");
 		driver.findElement(By.id("lastName")).sendKeys("Ball");
-		driver.findElement(By.id("photofile")).sendKeys("C:\\Users\\User\\Desktop\\1.jpg");
+		//driver.findElement(By.id("photofile")).sendKeys("C:\\Users\\User\\Desktop\\1.jpg");
 		driver.findElement(By.id("btnSave")).click();
 		WebElement picOfEmp = driver.findElement(By.id("empPic"));
 		softAssert.assertTrue(picOfEmp.isDisplayed());
