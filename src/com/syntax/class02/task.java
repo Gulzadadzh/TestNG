@@ -13,7 +13,7 @@ public class task {
 	
 	public static WebDriver driver;
 
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public void openBrowser() {
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/drivers/chromedriver");
 		driver = new ChromeDriver();
@@ -21,7 +21,7 @@ public class task {
 		// driver.manage().window().maximize();
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void closeBrowser() {
 		driver.quit();
 	}

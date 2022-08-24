@@ -33,8 +33,8 @@ public class loginPageTest {
 			Thread.sleep(4000);
 			driver.findElement(By.cssSelector("input#btnLogin")).click();
 			Thread.sleep(3000);
-			String welcomeText = driver.findElement(By.id("welcome")).getText();
-			Assert.assertEquals(welcomeText, "Welcome Admin"+name);
+			String welcomeText = driver.findElement(By.xpath("//a[@id='welcome']")).getText();
+			Assert.assertEquals(welcomeText, "Welcome "+name);
 		}
 		
 		@DataProvider

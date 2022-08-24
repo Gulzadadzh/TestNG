@@ -10,10 +10,10 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class softAssertionExample {
-	
+
 	public static WebDriver driver;
 
-	@BeforeMethod  //(alwaysRun = true)
+	@BeforeMethod(alwaysRun = true)
 	public void openBrowser() {
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/drivers/chromedriver");
 		driver = new ChromeDriver();
@@ -21,22 +21,21 @@ public class softAssertionExample {
 		// driver.manage().window().maximize();
 	}
 
-	@AfterMethod  //(alwaysRun = true)
+	@AfterMethod(alwaysRun = true)
 	public void closeBrowser() {
 		driver.quit();
 	}
 
-	@Test
+	@Test//(groups="smoke")
 	public void invalidLoginError() throws InterruptedException {
 		driver.findElement(By.id("txtUsername")).sendKeys("Admin");
 		driver.findElement(By.id("txtPassword")).sendKeys("guyguyguyg");
 		driver.findElement(By.cssSelector("input#btnLogin")).click();
 
-		
 		SoftAssert softAssertion = new SoftAssert();
 		String expectedErrorMessage1 = "Invalid credential";
 		WebElement errorMessage = driver.findElement(By.id("spanMessage"));
-		//1 validation
+		// 1 validation
 		softAssertion.assertEquals(errorMessage.getText(), expectedErrorMessage1);
 
 		Thread.sleep(3000);
@@ -46,15 +45,13 @@ public class softAssertionExample {
 
 		String errorMessage2 = "Password cannot be";
 		errorMessage = driver.findElement(By.id("spanMessage"));
-		//2 validation
+		// 2 validation
 		softAssertion.assertEquals(errorMessage.getText(), errorMessage2);
 		Thread.sleep(3000);
-		
+
 		System.out.println("I am a text after the assertion");
 		System.out.println(" ---  This is the end of the test ---- ");
-		
-		softAssertion.assertAll();//to throw all failed assertions
+
+		softAssertion.assertAll();// to throw all failed assertions
 	}
 }
-
-

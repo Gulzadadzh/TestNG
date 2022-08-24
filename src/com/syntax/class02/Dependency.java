@@ -9,10 +9,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class Dependency {
-	
+
 	public static WebDriver driver;
 
-	@BeforeMethod //(alwaysRun = true)
+	@BeforeMethod(alwaysRun = true)
 	public void openBrowser() {
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/drivers/chromedriver");
 		driver = new ChromeDriver();
@@ -20,12 +20,12 @@ public class Dependency {
 		// driver.manage().window().maximize();
 	}
 
-	@AfterMethod //(alwaysRun = true)
+	@AfterMethod(alwaysRun = true)
 	public void closeBrowser() {
 		driver.quit();
 	}
 
-	@Test   //(groups="smoke")
+	@Test
 	public void validLogin() {
 		driver.findElement(By.id("txtUsername")).sendKeys("Admin");
 		driver.findElement(By.id("txtPassword")).sendKeys("Hum@nhrm123");
@@ -38,7 +38,7 @@ public class Dependency {
 		}
 	}
 
-	@Test //(groups="regression") // if validLogin pass ONLY then execute invalidLogin
+	@Test(dependsOnMethods = "validLogin") // if validLogin pass ONLY then execute invalidLogin
 	// otherwise if validLogin fails then DO NOT EXECUTE invalidLogin (invalid Login
 	// test will be skipped)
 	public void invalidLogin() {
