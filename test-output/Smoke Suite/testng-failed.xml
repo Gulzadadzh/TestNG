@@ -7,17 +7,17 @@
   <test thread-count="5" name="Smoke Test(failed)">
     <groups>
       <run>
-        <include name="smoke"/>
+        <include name="Smoke"/>
       </run>
     </groups>
     <classes>
-      <class name="com.syntax.class02.issueWithoutAsertion">
+      <class name="com.syntax.class03.GroupsExample">
         <methods>
           <include name="closeBrowser"/>
-          <include name="validLogin"/>
           <include name="openBrowser"/>
+          <include name="validLogin"/>
         </methods>
-      </class> <!-- com.syntax.class02.issueWithoutAsertion -->
+      </class> <!-- com.syntax.class03.GroupsExample -->
     </classes>
   </test> <!-- Smoke Test(failed) -->
 </suite> <!-- Failed suite [Smoke Suite] -->
