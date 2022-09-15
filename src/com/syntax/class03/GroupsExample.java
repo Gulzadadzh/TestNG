@@ -25,7 +25,7 @@ public class GroupsExample {
 		driver.quit();
 	}
 
-	@Test(groups = "smoke")
+	@Test(groups = "Smoke")
 	public void validLogin() {
 		driver.findElement(By.id("txtUsername")).sendKeys("Admin");
 		driver.findElement(By.id("txtPassword")).sendKeys("Hum@nhrm123");
